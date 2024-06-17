@@ -18,6 +18,7 @@
             android:exported="false"
             android:label="@string/title_activity_result_screen" />
         <activity
+            android:configChanges="orientation|screenSize"
             android:name=".QuestionsActivity"
             android:exported="false"
             android:label="@string/title_activity_questions" />

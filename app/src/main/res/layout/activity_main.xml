@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/main_bg"
         android:gravity="center"
         android:orientation="vertical"
@@ -18,8 +18,10 @@
 
         <ImageView
             android:id="@+id/imageView_Logo"
-            android:layout_width="194dp"
-            android:layout_height="206dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:contentDescription="MapOut Logo"
             android:src="@drawable/main_logo" />
 
         <TextView
@@ -29,12 +31,11 @@
             android:layout_margin="10dp"
             android:fontFamily="@font/nunito_extrabold"
             android:gravity="center"
-            android:paddingBottom="20dp"
             android:shadowColor="#000000"
             android:text="MapOut"
             android:textAllCaps="false"
             android:textColor="@color/dark_blue"
-            android:textSize="36sp"
+            android:textSize="50sp"
             android:textStyle="bold" />
 
         <Button

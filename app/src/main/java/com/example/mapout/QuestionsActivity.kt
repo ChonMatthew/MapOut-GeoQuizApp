@@ -11,16 +11,27 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 
 // Giving the main class a OnClickListener
 class QuestionsActivity : AppCompatActivity(), OnClickListener {
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("current_index", mCurrentIndex)
+        outState.putInt("selected_option", mSelectedOption)
+        outState.putInt("cheat_count", cheatCount)
+        outState.putSerializable("previously_selected_options", mPreviouslySelectedOptions)
+    }
+
     // Initializing the Questions and the POSSIBLE Selected Options
     private var mCurrentIndex:Int = 1
     private var mQuestionsList: ArrayList<Question>? = null
     private var mSelectedOption: Int = 0
+    private var cheatCount = 0
+
 
     // Using a HashMap to store the Selected Options
     private var mPreviouslySelectedOptions: HashMap<Int, Int> = hashMapOf()
@@ -36,6 +47,8 @@ class QuestionsActivity : AppCompatActivity(), OnClickListener {
     private lateinit var btn_submit: Button
     private lateinit var btn_back: Button
     private lateinit var options: ArrayList<TextView>
+    private lateinit var btn_reset: Button
+    private lateinit var btn_cheat: Button
 
     // Layout of the Questions Screen
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +67,8 @@ class QuestionsActivity : AppCompatActivity(), OnClickListener {
         btn_submit = findViewById(R.id.submit_button)
         btn_submit = findViewById(R.id.submit_button)
         btn_back = findViewById(R.id.back_button)
+        btn_reset = findViewById(R.id.reset_button)
+        btn_cheat = findViewById(R.id.cheat_button)
 
         // Using the getQuestions() function from the Questions.kt file to fill the list
         mQuestionsList = QuestionsList.getQuestions(this)
@@ -68,6 +83,8 @@ class QuestionsActivity : AppCompatActivity(), OnClickListener {
         option4.setOnClickListener(this)
         btn_submit.setOnClickListener(this)
         btn_back.setOnClickListener(this)
+        btn_reset.setOnClickListener(this)
+        btn_cheat.setOnClickListener(this)
     }
 
     // Function to get all the text for the questions and options
@@ -159,6 +176,7 @@ class QuestionsActivity : AppCompatActivity(), OnClickListener {
 
                     // Goes to the next Screen
                     val intent = Intent(this, ResultScreen::class.java)
+                    intent.putExtra("cheat_used", cheatCount)
                     intent.putExtra("total_questions", mQuestionsList!!.size)
                     intent.putExtra("correct_answers", score)
                     startActivity(intent)
@@ -174,6 +192,12 @@ class QuestionsActivity : AppCompatActivity(), OnClickListener {
                 } else {
                     Toast.makeText(this, "You are on the first question!", Toast.LENGTH_SHORT).show()
                 }
+            }
+            R.id.reset_button -> {
+                resetQuizConfirmation()
+            }
+            R.id.cheat_button -> {
+                cheatOption()
             }
         }
     }
@@ -198,12 +222,64 @@ class QuestionsActivity : AppCompatActivity(), OnClickListener {
         var score = 0
         for (i in 0 until mQuestionsList!!.size) {
             val question = mQuestionsList!![i]
-            val selectedOption = mPreviouslySelectedOptions[i] // Access using question index + 1
+            val selectedOption = mPreviouslySelectedOptions[i] // Comparing the questions to the selected options
             if (selectedOption != null && selectedOption == question.answer) {
                 score++
             }
         }
         return score
+    }
+
+    private fun resetQuiz() {
+        mSelectedOption = 0
+        mCurrentIndex = 1
+        mPreviouslySelectedOptions.clear() // Clear all previously selected options
+        cheatCount = 0
+        setQuestion()
+    }
+
+    private fun resetQuizConfirmation() {
+        val resetWarning = AlertDialog.Builder(this)
+        resetWarning.setMessage("Are you sure you want to reset the quiz? Your progress will be lost.")
+            .setPositiveButton("Reset") { _, _ ->
+                resetQuiz()
+            }
+            .setNegativeButton("Cancel") { _, _ ->
+                // Do nothing, close dialog
+            }
+            .setCancelable(false) // Prevent dismissing dialog by tapping outside
+        resetWarning.create().show()
+    }
+
+    private fun getOptionsText(): ArrayList<TextView> {
+        val options = ArrayList<TextView>()
+        options.add(option1)
+        options.add(option2)
+        options.add(option3)
+        options.add(option4)
+        return options
+    }
+
+
+    private fun cheatOption() {
+        if (cheatCount < 3) {
+            val currentQuestion = mQuestionsList!![mCurrentIndex - 1]
+            val correctOption = currentQuestion.answer
+            val options = getOptionsText()
+
+            // Highlight the correct option
+            for (i in options.indices) {
+                if (i + 1 == correctOption) {
+                    options[i].setBackgroundColor(Color.parseColor("#AAFF00"))
+                    break
+                }
+            }
+
+            cheatCount++
+            Toast.makeText(this, "Cheat used! You have ${3 - cheatCount} cheats remaining.", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "No more cheats available!", Toast.LENGTH_SHORT).show()
+        }
     }
 }
 
