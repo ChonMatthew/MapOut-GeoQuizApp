@@ -3,17 +3,19 @@ package com.example.mapout
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 
 class QuestionsActivity : AppCompatActivity(), OnClickListener {
 
-    private var mCurrentIndex:Int = 1
+    private var mCurrentIndex:Int = 0
     private var mQuestionsList: ArrayList<Question>? = null
     private var mSelectedOption: Int = 0
 
@@ -54,19 +56,21 @@ class QuestionsActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun setQuestion() {
-        mCurrentIndex = 1
-        val question = mQuestionsList!![mCurrentIndex - 1]
+        if (mCurrentIndex < mQuestionsList!!.size) {
+            val question = mQuestionsList!![mCurrentIndex]
 
-        progressBar.progress = mCurrentIndex
-        progressText.text = "$mCurrentIndex" + "/" + progressBar.max
+            questionText.text = question.question
+            progressBar.progress = mCurrentIndex
+            progressText.text = "$mCurrentIndex" + "/" + progressBar.max
 
-        questionText.text = question!!.question
-        option1.text = question.optionOne
-        option2.text = question.optionTwo
-        option3.text = question.optionThree
-        option4.text = question.optionFour
+            questionText.text = question!!.question
+            option1.text = question.optionOne
+            option2.text = question.optionTwo
+            option3.text = question.optionThree
+            option4.text = question.optionFour
 
-        defaultOption()
+            defaultOption()
+        }
     }
 
     private fun defaultOption() {
@@ -100,6 +104,22 @@ class QuestionsActivity : AppCompatActivity(), OnClickListener {
                 selectedOption(option4, 4)
             }
             R.id.submit_button ->{
+                when {
+                    mCurrentIndex < mQuestionsList!!.size -> {
+                        Log.d("QuestionsActivity", "Before increment: mCurrentIndex = $mCurrentIndex")
+                        mCurrentIndex++
+                        Log.d("QuestionsActivity", "After increment: mCurrentIndex = $mCurrentIndex")
+                        setQuestion() // Load the next question
+                        btn_submit.text = "Next Question" // Change text if not last question
+                    }
+
+                    else -> {
+                        btn_submit.text = "Submit" // Change to "Submit" for last question
+                        Toast.makeText(this, "You have completed the Quiz!", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+
 
             }
         }

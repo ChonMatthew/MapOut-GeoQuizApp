@@ -28,7 +28,7 @@ object QuestionsList {
 
         val question2 = Question(
             id = 2,
-            question = R.string.question_two.toString(),
+            question = context.getString(R.string.question_two),
             optionOne = "Atlantic Ocean",
             optionTwo = "Indian Ocean",
             optionThree = "Pacific Ocean",
@@ -39,7 +39,7 @@ object QuestionsList {
 
         val question3 = Question(
             id = 3,
-            question = R.string.question_three.toString(),
+            question = context.getString(R.string.question_three),
             optionOne = "Mount Kilimanjaro",
             optionTwo = "K2",
             optionThree = "Mount Everest",
@@ -50,7 +50,7 @@ object QuestionsList {
 
         val question4 = Question(
             id = 4,
-            question = R.string.question_four.toString(),
+            question = context.getString(R.string.question_four),
             optionOne = "Five",
             optionTwo = "Seven",
             optionThree = "Six",
@@ -61,11 +61,11 @@ object QuestionsList {
 
         val question5 = Question(
             id = 5,
-            question = R.string.question_five.toString(),
+            question = context.getString(R.string.question_five),
             optionOne = "Lake",
             optionTwo = "Both are the same size",
             optionThree = "Depends on the lake",
-            optionFour = "Sean",
+            optionFour = "Sea",
             answer = 4
         )
         questionsList.add(question5)
