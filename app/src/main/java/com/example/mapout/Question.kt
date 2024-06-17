@@ -19,7 +19,7 @@ object QuestionsList {
             id = 1,
             question = context.getString(R.string.question_one),
             optionOne = "Shah Alam",
-            optionTwo = "Kuala Lumpur",
+            optionTwo = "Kuala Lumpur", //Correct
             optionThree = "Brunei",
             optionFour = "Bangkok",
             answer = 2
@@ -31,7 +31,7 @@ object QuestionsList {
             question = context.getString(R.string.question_two),
             optionOne = "Atlantic Ocean",
             optionTwo = "Indian Ocean",
-            optionThree = "Pacific Ocean",
+            optionThree = "Pacific Ocean", //Correct
             optionFour = "Arctic Ocean",
             answer = 3
         )
@@ -42,7 +42,7 @@ object QuestionsList {
             question = context.getString(R.string.question_three),
             optionOne = "Mount Kilimanjaro",
             optionTwo = "K2",
-            optionThree = "Mount Everest",
+            optionThree = "Mount Everest", //Correct
             optionFour = "Mount Fuji",
             answer = 3
         )
@@ -52,7 +52,7 @@ object QuestionsList {
             id = 4,
             question = context.getString(R.string.question_four),
             optionOne = "Five",
-            optionTwo = "Seven",
+            optionTwo = "Seven", //Correct
             optionThree = "Six",
             optionFour = "Eight",
             answer = 2
@@ -65,7 +65,7 @@ object QuestionsList {
             optionOne = "Lake",
             optionTwo = "Both are the same size",
             optionThree = "Depends on the lake",
-            optionFour = "Sea",
+            optionFour = "Sea", //Correct
             answer = 4
         )
         questionsList.add(question5)

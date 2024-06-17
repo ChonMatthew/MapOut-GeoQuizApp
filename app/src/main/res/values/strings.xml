@@ -8,6 +8,8 @@
     <string name="question_three">What is the tallest mountain in the world?</string>
     <string name="question_four">How many continents are there in the world?</string>
     <string name="question_five"> Which is larger, a lake or a sea?</string>
+    <string name="title_activity_result_screen.kt">ResultScreen.kt</string>
+    <string name="title_activity_result_screen">ResultScreen</string>
     <!-- end -->
 
     What is the capital of Malaysia?

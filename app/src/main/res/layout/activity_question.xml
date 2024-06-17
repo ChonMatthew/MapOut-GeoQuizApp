@@ -39,9 +39,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:max="10"
+                android:max="5"
                 android:minHeight="50dp"
-                android:progress="0"
+                android:progress="1"
                 android:indeterminate="false"/>
 
             <TextView
@@ -109,10 +109,20 @@
             android:layout_height="wrap_content"
             android:layout_margin="14dp"
             android:background="@color/teal_700"
-            android:text="SUBMIT"
+            android:text="Next Question"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/white"/>
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@color/teal_200"
+            android:text="Back"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
     </LinearLayout>
 </ScrollView>
