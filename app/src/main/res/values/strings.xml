@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">MapOut</string>
+    <string name="title_activity_questions">Questions</string>
+
+    <!-- Questions -->
+    <string name="question_one"> What is the capital of Malaysia?</string>
+    <string name="question_two">Which ocean borders the western coast of the United States?</string>
+    <string name="question_three">What is the tallest mountain in the world?</string>
+    <string name="question_four">How many continents are there in the world?</string>
+    <string name="question_five"> Which is larger, a lake or a sea?</string>
+    <!-- end -->
+
+    What is the capital of Malaysia?
+
+    Shah Alam
+    Kuala Lumpur (correct)
+    Brunei
+    Bangkok
+
+    Which ocean borders the western coast of the United States?
+
+    Atlantic Ocean
+    Indian Ocean
+    Pacific Ocean (correct)
+    Arctic Ocean
+
+    What is the tallest mountain in the world?
+
+    Mount Kilimanjaro
+    K2
+    Mount Everest (correct)
+    Mount Fuji
+
+    How many continents are there in the world?
+
+    Five
+    Six
+    Seven (correct)
+    Eight
+
+    Which is larger, a lake or a sea?
+
+    A lake is larger than a sea.
+    They are the same size.
+    It depends on the lake and sea.
+    A sea is larger than a lake (correct).
+
+</resources>
